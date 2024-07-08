@@ -106,50 +106,49 @@ Here are the modes for media selection and operations:
 - `MODE_TAKE_IMAGE_GALLERY_ONLY`
 
 
-class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener {
+```
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import java.io.File
+
+class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener{
 
     var imagePickerUtility: ImagePickerUtility? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Initialize ImagePickerUtility
         imagePickerUtility = ImagePickerUtility(
-            this,
-            null,
-            this,
-            ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY,
-            true
+            this, null,
+            this, ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY, true
         )
-
-        // Check and request permissions if needed
+        // fetch image you can use click listeners or other logic
         imagePickerUtility!!.methodRequiresPermission()
     }
 
-    // Handle activity result from ImagePickerUtility
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         imagePickerUtility!!.onActivityResult(this, requestCode, resultCode, data)
-    }
+//        imagePickerUtility!!.methodRequiresPermission()
+}
 
-    // Callback method when image selection is completed
+
     override fun onImageRequestCompleted(filePath: String?, resultCode: Int, imageUri: Uri?) {
         runOnUiThread {
             if (filePath != null) {
                 val file = File(filePath)
-                val fileSizeKB = (file.length() / 1024).toString().toInt()
-                Log.d("fileSize", "$fileSizeKB KB")
-                Toast.makeText(this, "Image selected: $filePath", Toast.LENGTH_SHORT).show()
-
-                // Use filePath as needed, e.g., display in ImageView or upload
-            } else {
-                Toast.makeText(this, "Failed to get image", Toast.LENGTH_SHORT).show()
+                val file_size = (file.length() / 1024).toString().toInt()
+                Log.wtf("fileSize", file_size.toString())
+                Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
             }
         }
     }
 }
-
+```
 
 
 ## Conclusion

@@ -26,7 +26,7 @@ Next, open your app-level `build.gradle` file (usually located in `app/build.gra
 
 ```gradle
 dependencies {
-    implementation 'com.github.jitpack:gradle-simple:1.0'
+     implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
 }
 ```
 
@@ -86,7 +86,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.github.jitpack:gradle-simple:1.0'
+     implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
 }
 ```
 

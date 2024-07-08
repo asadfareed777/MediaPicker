@@ -90,6 +90,68 @@ dependencies {
 }
 ```
 
+### How to Usage media picker in an activity
+
+# Modes
+
+Here are the modes for media selection and operations:
+
+- `MODE_TAKE_IMAGE_CAMERA_ONLY`
+- `MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY`
+- `MODE_CHOOSE_ONLY_ANY_FILE`
+- `MODE_TAKE_PIC_OR_CHOOSE_ANY_FILE`
+- `MODE_TAKE_VIDEO_BOTH_RECORD_GALLERY`
+- `MODE_RECORD_VIDEO_ONLY`
+- `MODE_GALLERY_VIDEO_ONLY`
+- `MODE_TAKE_IMAGE_GALLERY_ONLY`
+
+
+class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener {
+
+    var imagePickerUtility: ImagePickerUtility? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Initialize ImagePickerUtility
+        imagePickerUtility = ImagePickerUtility(
+            this,
+            null,
+            this,
+            ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY,
+            true
+        )
+
+        // Check and request permissions if needed
+        imagePickerUtility!!.methodRequiresPermission()
+    }
+
+    // Handle activity result from ImagePickerUtility
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        imagePickerUtility!!.onActivityResult(this, requestCode, resultCode, data)
+    }
+
+    // Callback method when image selection is completed
+    override fun onImageRequestCompleted(filePath: String?, resultCode: Int, imageUri: Uri?) {
+        runOnUiThread {
+            if (filePath != null) {
+                val file = File(filePath)
+                val fileSizeKB = (file.length() / 1024).toString().toInt()
+                Log.d("fileSize", "$fileSizeKB KB")
+                Toast.makeText(this, "Image selected: $filePath", Toast.LENGTH_SHORT).show()
+
+                // Use filePath as needed, e.g., display in ImageView or upload
+            } else {
+                Toast.makeText(this, "Failed to get image", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+
+
+
 ## Conclusion
 
 By following the steps above, you will be able to add dependencies from JitPack to your Android project. If you encounter any issues, refer to the JitPack documentation or the library's repository for more information.

@@ -4,5 +4,5 @@ jdk:
 before_install:
   - ./scripts/prepareJitpackEnvironment.sh
 install:
-  - FILE="-Dfile=com-asad-mediapicker.aar"
-  - mvn install:install-file $FILE -DgroupId=com.github.asadfareed777 -DartifactId=com-asad-mediapicker -Dversion=1.0 -Dpackaging=aar -DgeneratePom=true
+  - FILE="-Dfile=MediaPicker-debug.aar"
+  - mvn install:install-file $FILE -DgroupId=com.github.asadfareed777 -DartifactId=MediaPicker-debug -Dversion=1.0 -Dpackaging=aar -DgeneratePom=true

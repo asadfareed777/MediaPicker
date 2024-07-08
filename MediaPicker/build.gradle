@@ -84,8 +84,8 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'com.github.asadfareed777'
-            artifactId = 'com-asad-mediapicker'
-            version = "1.0"
+            artifactId = 'MediaPicker-debug'
+            version = "1.0.0"
             pom {
                 description = 'First release'
             }

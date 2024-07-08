@@ -86,7 +86,9 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
-     implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
+    implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+     
 }
 ```
 

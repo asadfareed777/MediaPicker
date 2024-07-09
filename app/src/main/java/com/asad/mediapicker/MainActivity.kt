@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener
         setContentView(R.layout.activity_main)
         imagePickerUtility = ImagePickerUtility(
             this, null,
-            this, ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY
+            this, ImagePickerUtility.MODE_CHOOSE_ONLY_ANY_FILE
         )
         // fetch image you can use click listeners or other logic
         imagePickerUtility!!.methodRequiresPermission()
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener
                 val file = File(filePath)
                 val file_size = (file.length() / 1024).toString().toInt()
                 Log.wtf("fileSize", file_size.toString())
+                Log.wtf("filePath", filePath.toString())
                 Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
             }
         }

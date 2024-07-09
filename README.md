@@ -26,7 +26,8 @@ Next, open your app-level `build.gradle` file (usually located in `app/build.gra
 
 ```gradle
 dependencies {
-     implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
+     implementation 'com.github.asadfareed777:MediaPicker:LatestReleaseHere'
+     implementation 'pub.devrel:easypermissions:3.0.0'
 }
 ```
 
@@ -86,7 +87,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.github.asadfareed777:MediaPicker:v1.0.0'
+    implementation 'com.github.asadfareed777:MediaPicker:LatestReleaseHere'
     implementation 'pub.devrel:easypermissions:3.0.0'
      
 }
@@ -124,6 +125,7 @@ class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // initialize declared object
         imagePickerUtility = ImagePickerUtility(
             this, null,
             this, ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY, true
@@ -131,14 +133,13 @@ class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener
         // fetch image you can use click listeners or other logic
         imagePickerUtility!!.methodRequiresPermission()
     }
-
+    // add onActivityResult like this
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         imagePickerUtility!!.onActivityResult(this, requestCode, resultCode, data)
-//        imagePickerUtility!!.methodRequiresPermission()
 }
 
-
+    // here you will receive captured,selected images and videos
     override fun onImageRequestCompleted(filePath: String?, resultCode: Int, imageUri: Uri?) {
         runOnUiThread {
             if (filePath != null) {

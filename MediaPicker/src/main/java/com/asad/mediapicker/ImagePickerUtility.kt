@@ -101,15 +101,19 @@ class ImagePickerUtility : View.OnClickListener, PermissionCallbacks {
         this.mContext = context
         this.imagePickerListiner = listener
         this.saveVideoToSDCard = saveVideoToSDcard
-        permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            permissions13
-        } else {
-            PERMISSIONS_CAMERA
-        }
+        initPermissions()
         createDirectory()
 
         if (this.request != null) {
             userActionRequest(cameraRequest)
+        }
+    }
+
+    private fun initPermissions() {
+        permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissions13
+        } else {
+            PERMISSIONS_CAMERA
         }
     }
 
@@ -136,7 +140,7 @@ class ImagePickerUtility : View.OnClickListener, PermissionCallbacks {
         this.imagePickerListiner = listener
         this.mFragmentContext = fragmentContext
         this.saveVideoToSDCard = saveVideoToSDcard
-
+        initPermissions()
         createDirectory()
 
         if (this.request != null) {
@@ -167,7 +171,7 @@ class ImagePickerUtility : View.OnClickListener, PermissionCallbacks {
         this.modeType = modeType
         this.mContext = context
         this.imagePickerListiner = listener
-
+        initPermissions()
         createDirectory()
 
         if (this.request != null) {
@@ -195,7 +199,7 @@ class ImagePickerUtility : View.OnClickListener, PermissionCallbacks {
         this.mContext = activityContext
         this.imagePickerListiner = listener
         this.mFragmentContext = fragmentContext
-
+        initPermissions()
         createDirectory()
 
         if (this.request != null) {

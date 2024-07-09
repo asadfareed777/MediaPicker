@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), ImagePickerUtility.ImagePickerListener
         setContentView(R.layout.activity_main)
         imagePickerUtility = ImagePickerUtility(
             this, null,
-            this, ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY, true
+            this, ImagePickerUtility.MODE_TAKE_IMAGE_BOTH_CAMERA_GALLERY
         )
         // fetch image you can use click listeners or other logic
         imagePickerUtility!!.methodRequiresPermission()
